@@ -4,3 +4,4 @@ torchvision
 matplotlib
 numpy
 opencv-python
+gdown
