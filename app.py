@@ -38,7 +38,7 @@ st.title("Data Center Hotspot Prediction")
 st.markdown("### Enter Design Parameters:")
 
 # **User Inputs**
-power = st.number_input("Power (W)", min_value=200.0, max_value=2000.0, step=10.0)
+power = st.number_input("Power (W)", min_value=400.0, max_value=2000.0, step=10.0)
 velocity = st.number_input("Velocity (m/s)", min_value=1.0, max_value=3.0, step=0.5)
 temperature = st.number_input("Temperature (K)", min_value=290.0, max_value=300.0, step=0.5)
 
