@@ -19,7 +19,7 @@ The neural network consists of:
 - Sigmoid activation in the final layer to normalize output
 - Output: RGB temperature field image (128x256)
 
-## Data and Training
+### Data and Training
 
 - Dataset: Generated from 2000 CFD simulations at different design points.
 - Inputs: Power (W), Velocity (m/s), Temperature (°C).
