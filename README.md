@@ -64,5 +64,5 @@ The neural network consists of:
 
 Gulzar1911
 
-Work is part of my thesis "Deep Learning Enhanced CFD approach in predicting Hotspots in Datacenters"
+This work is part of my thesis "Deep Learning Enhanced CFD approach in predicting Hotspots in Datacenters". This work is initiated as a framework to predict temperature fields generated from CFD using deep learning models. First part includes CFD on a single rack and second part includes modelling whole datacenter with more parameters for design optimizations.
 
