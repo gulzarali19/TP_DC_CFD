@@ -39,7 +39,7 @@ st.markdown("### Enter Design Parameters:")
 
 # **User Inputs**
 power = st.number_input("Power (W)", min_value=100.0, max_value=2000.0, step=10.0)
-velocity = st.number_input("Velocity (m/s)", min_value=1, max_value=3.0, step=0.5)
+velocity = st.number_input("Velocity (m/s)", min_value=1.0, max_value=3.0, step=0.5)
 temperature = st.number_input("Temperature (°C)", min_value=15.0, max_value=25.0, step=0.5)
 
 # **Predict Button**
