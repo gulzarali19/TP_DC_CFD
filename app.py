@@ -57,4 +57,4 @@ if st.button("Predict Temperature Field"):
     predicted_image_pil = Image.fromarray((predicted_np * 255).astype(np.uint8))
     
     # Display Prediction
-    st.image(predicted_image_pil, caption="Predicted Temperature Field", use_column_width=True)
+    st.image(predicted_image_pil, caption="Predicted Temperature Field", use_container_width=True)
