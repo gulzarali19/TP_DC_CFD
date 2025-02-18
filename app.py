@@ -2,7 +2,7 @@ import streamlit as st
 import torch
 import torch.nn as nn
 import numpy as np
-import cv2
+from PIL import Image  # Use PIL instead of OpenCV
 import matplotlib.pyplot as plt
 
 # **Load the Trained Model**
@@ -38,9 +38,9 @@ st.title("Data Center Hotspot Prediction")
 st.markdown("### Enter Design Parameters:")
 
 # **User Inputs**
-power = st.number_input("Power (W)", min_value=50.0, max_value=500.0, step=10.0)
-velocity = st.number_input("Velocity (m/s)", min_value=0.1, max_value=5.0, step=0.1)
-temperature = st.number_input("Temperature (°C)", min_value=15.0, max_value=45.0, step=0.5)
+power = st.number_input("Power (W)", min_value=100.0, max_value=2000.0, step=10.0)
+velocity = st.number_input("Velocity (m/s)", min_value=1.0, max_value=3.0, step=0.5)
+temperature = st.number_input("Temperature (°C)", min_value=15.0, max_value=25.0, step=0.5)
 
 # **Predict Button**
 if st.button("Predict Temperature Field"):
@@ -53,10 +53,8 @@ if st.button("Predict Temperature Field"):
     predicted_np = np.transpose(predicted_np, (1, 2, 0))  # Convert from (C, H, W) -> (H, W, C)
     predicted_np = np.clip(predicted_np, 0, 1)  # Normalize to [0,1]
 
-    # Display Prediction
-    fig, ax = plt.subplots(figsize=(10, 5))
-    ax.imshow(predicted_np, aspect=256/128)
-    ax.axis("off")
-    ax.set_title("Predicted Temperature Field")
+    # Convert NumPy array to PIL Image
+    predicted_image_pil = Image.fromarray((predicted_np * 255).astype(np.uint8))
     
-    st.pyplot(fig)
+    # Display Prediction
+    st.image(predicted_image_pil, caption="Predicted Temperature Field", use_column_width=True)
