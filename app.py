@@ -4,6 +4,14 @@ import torch.nn as nn
 import numpy as np
 from PIL import Image  
 
+# **Normalization Function**
+def normalize(value, min_val, max_val):
+    return (value - min_val) / (max_val - min_val)
+
+# **De-normalization Function (if needed)**
+def denormalize(value, min_val, max_val):
+    return value * (max_val - min_val) + min_val
+
 # **Model A: TemperatureFieldPredictor**
 class TemperatureFieldPredictor(nn.Module):
     def __init__(self, image_size=(128, 256)):  
@@ -93,6 +101,12 @@ model = load_model(model_selection)
 power = st.number_input("Power (W)", min_value=400.0, max_value=2000.0, step=10.0)
 velocity = st.number_input("Velocity (m/s)", min_value=1.0, max_value=3.0, step=0.5)
 temperature = st.number_input("Temperature (K)", min_value=290.0, max_value=300.0, step=0.5)
+
+# **Normalize inputs if using Model B**
+if model_selection == "Model B":
+    power = normalize(power, 400, 2000)
+    velocity = normalize(velocity, 1.0, 3.0)
+    temperature = normalize(temperature, 290, 300)
 
 # **Predict Button**
 if st.button("Predict Temperature Field"):
