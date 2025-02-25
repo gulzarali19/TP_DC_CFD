@@ -99,7 +99,7 @@ model = load_model(model_selection)
 
 # **User Inputs**
 power = st.number_input("Power (W)", min_value=400.0, max_value=2000.0, step=10.0)
-velocity = st.number_input("Velocity (m/s)", min_value=0.1, max_value=1000.0, step=0.5)
+velocity = st.number_input("Velocity (m/s)", min_value=0.1, max_value=3.0, step=0.5)
 temperature = st.number_input("Temperature (K)", min_value=290.0, max_value=300.0, step=0.5)
 
 # **Normalize inputs if using Model B**
