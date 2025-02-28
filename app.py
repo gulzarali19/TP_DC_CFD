@@ -36,7 +36,7 @@ class TemperatureFieldPredictor(nn.Module):
 
 # **Model B: ScalarToImageModel**
 class ScalarToImageModel(nn.Module):
-    def __init__(self, output_height=256, output_width=512):
+    def __init__(self, output_height=128, output_width=256):
         super(ScalarToImageModel, self).__init__()
 
         initial_h, initial_w = output_height // 64, output_width // 64
@@ -84,7 +84,7 @@ def load_model(model_name):
         model = TemperatureFieldPredictor().to(device)
         model.load_state_dict(torch.load("new_model.pth", map_location=device))
     elif model_name == "Model B":
-        model = ScalarToImageModel(output_height=256, output_width=512).to(device)
+        model = ScalarToImageModel(output_height=128, output_width=256).to(device)
         model.load_state_dict(torch.load("best_model.pth", map_location=device))
     model.eval()
     return model
@@ -99,7 +99,7 @@ model = load_model(model_selection)
 
 # **User Inputs**
 power = st.number_input("Power (W)", min_value=400.0, max_value=2000.0, step=10.0)
-velocity = st.number_input("Velocity (m/s)", min_value=1.0, max_value=3.0, step=0.5)
+velocity = st.number_input("Velocity (m/s)", min_value=0.1, max_value=3.0, step=0.5)
 temperature = st.number_input("Temperature (K)", min_value=290.0, max_value=300.0, step=0.5)
 
 # **Normalize inputs if using Model B**
