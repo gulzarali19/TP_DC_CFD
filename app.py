@@ -82,7 +82,7 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 def load_model(model_name):
     if model_name == "Model A":
         model = TemperatureFieldPredictor().to(device)
-        model_path = os.path.join(MODEL_DIR, "best_model.pth")
+        model_path = os.path.join(MODEL_DIR, "new_model.pth")
     elif model_name == "Model B":
         model = ScalarToImageModel(output_height=128, output_width=256).to(device)
         model_path = os.path.join(MODEL_DIR, "CNN_model_ver_3_II.pth")
