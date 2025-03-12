@@ -116,9 +116,9 @@ temperature = st.number_input("Temperature (K)", min_value=290.0, max_value=300.
 if st.button("Predict Temperature Field"):
     with torch.no_grad():
         # **Normalize Inputs**
-        power_norm = normalize(power, 400, 2000)
-        velocity_norm = normalize(velocity, 0.1, 3.0)
-        temperature_norm = normalize(temperature, 290, 300)
+        power_norm = normalize(power, 417, 1667)
+        velocity_norm = normalize(velocity, 1.75, 2.65)
+        temperature_norm = normalize(temperature, 290, 299)
 
         design_params = torch.tensor([[power_norm, velocity_norm, temperature_norm]], dtype=torch.float32).to(device)
         predicted_image = model(design_params)
