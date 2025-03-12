@@ -82,10 +82,10 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 def load_model(model_name):
     if model_name == "Model A":
         model = TemperatureFieldPredictor().to(device)
-        model.load_state_dict(torch.load("new_model.pth", map_location=device))
+        model.load_state_dict(torch.load("/Models/new_model.pth", map_location=device))
     elif model_name == "Model B":
         model = ScalarToImageModel(output_height=128, output_width=256).to(device)
-        model.load_state_dict(torch.load("best_model.pth", map_location=device))
+        model.load_state_dict(torch.load("/Models/CNN_model_ver_3_II.pth", map_location=device))
     model.eval()
     return model
 
@@ -102,11 +102,6 @@ power = st.number_input("Power (W)", min_value=400.0, max_value=2000.0, step=10.
 velocity = st.number_input("Velocity (m/s)", min_value=0.1, max_value=3.0, step=0.5)
 temperature = st.number_input("Temperature (K)", min_value=290.0, max_value=300.0, step=0.5)
 
-# **Normalize inputs if using Model B**
-if model_selection == "Model B":
-    power = normalize(power, 400, 2000)
-    velocity = normalize(velocity, 1.0, 3.0)
-    temperature = normalize(temperature, 290, 300)
 
 # **Predict Button**
 if st.button("Predict Temperature Field"):
