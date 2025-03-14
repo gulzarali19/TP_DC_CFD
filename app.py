@@ -108,9 +108,14 @@ if model is None:
     st.stop()  # Stops execution if model file is missing
 
 # **User Inputs**
-power = st.number_input("Power (W)", min_value=400.0, max_value=2000.0, step=10.0)
-velocity = st.number_input("Velocity (m/s)", min_value=0.1, max_value=3.0, step=0.5)
-temperature = st.number_input("Temperature (K)", min_value=290.0, max_value=300.0, step=0.5)
+if model_selection == "Model A":
+    design_params = torch.tensor([[power, velocity, temperature]], dtype=torch.float32).to(device)  # Raw values for Model A
+else:
+    power_norm = normalize(power, 417, 1667)
+    velocity_norm = normalize(velocity, 1.75, 2.65)
+    temperature_norm = normalize(temperature, 290, 299)
+    
+    design_params = torch.tensor([[power_norm, velocity_norm, temperature_norm]], dtype=torch.float32).to(device)  # Normalized for Model B
 
 # **Predict Button**
 if st.button("Predict Temperature Field"):
